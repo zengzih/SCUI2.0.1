@@ -1,0 +1,21 @@
+/* 隐藏默认的打勾图标 */
+.el-select-dropdown.is-multiple .el-select-dropdown__item.sc-select-multiple-option.selected::after{
+  content: ''
+}
+/* 清除下拉LI的填充 */
+.sc-select-multiple-option.el-select-dropdown__item{
+  padding: 0;
+}
+/* 修改下拉checkbox的样式，使其能够填充整个LI */
+.sc-select-multiple-option .el-checkbox{
+  display: block;
+  height: auto;
+  padding: 8px 10px;
+}
+
+/* 使选中的tag只显示一行，超出隐藏 */
+.el-sc-select-multiple .el-select__tags{
+  height: 26px;
+  max-width: none!important;
+  overflow-y: hidden;
+}

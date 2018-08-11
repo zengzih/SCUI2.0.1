@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+       <button onclick="Test()">ClickMe</button> 
+</body>
+<script>
+    function Table(options) {
+        this.params = {
+            height: '',
+            data: [],
+            column: [],
+        }
+        console.log(options);
+        for (var n in this.params) {
+            if (options && options.hasOwnProperty(n)) {
+                this.params[n] = options[n];
+            }
+        }
+        for (var i in this.params) {
+            Object.defineProperty(this.params, i, {
+                configurable: true,
+                get() {
+                    console.log('-------get----------');
+                    return this[i];
+                },
+                set(val, oldVal) {
+                    if (val !== this[i]) {
+                        console.log(val, oldVal);
+                        console.log('--------set-----------', i)
+                        this[i] = val;
+                    }
+                }
+            })
+        }
+    }
+    Table.prototype.scxxTable = function(options) {
+        
+    };
+
+    var table = new Table();
+    function Test() {
+       table.params.height = 200;
+    }
+</script>
+</html>

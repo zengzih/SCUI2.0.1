@@ -1,0 +1,106 @@
+.zzh-sc-select {
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      line-height: 28px;
+      height: 28px;
+      padding: 0 10px;
+      label {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        box-sizing: border-box;
+        &:hover {
+          .select-check {
+            border: 1px solid lightgray;
+            &:hover {
+              border: 1px solid #409eff;
+            }
+            &:after {
+              content: "";
+              position: absolute;
+              border: 2px solid #fff;
+              left: 2px;
+              top: 2px;
+              width: 6px;
+              height: 4px;
+              transform: scale(0) rotate(-45deg);
+              -webkit-transition: transform 0.2s ease-out;
+              transform-origin: center;
+              border-top: none;
+              border-right: none;
+            }
+          }
+        }
+        input {
+          display: none;
+          &.is-checked {
+            & + .select-check {
+              background-color: #5B7BFA;
+              border-color: #345cfe;
+              &:after {
+                content: "";
+                position: absolute;
+                border: 2px solid #fff;
+                left: 2px;
+                top: 2px;
+                width: 6px;
+                height: 4px;
+                transform: scale(1) rotate(-45deg);
+                -webkit-transition: transform 0.2s ease-out;
+                transform-origin: center;
+                border-top: none;
+                border-right: none;
+              }
+            }
+            & + .is-disabled.select-check {
+              &:after {
+                border-color: #b4bccc !important;
+              }
+            }
+          }
+        }
+        span {
+          font-size: 12px;
+          &.select-check {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #fff;
+            border-radius: 2px;
+            border: 1px solid #d8dce5;
+            box-sizing: border-box;
+            margin-right: 8px;
+            position: relative;
+            vertical-align: middle;
+            &.is-disabled {
+              background-color: #edf2fc !important;
+              border-color: #d8dce5 !important;
+              cursor: not-allowed;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.el-select__tags {
+    padding-left: 10px;
+    .el-select__tags-text {
+      display: inline-block;
+      font-size: 12px;
+      width: 100%;
+      overflow: hidden; /*自动隐藏文字*/
+      text-overflow: ellipsis; /*文字隐藏后添加省略号*/
+      white-space: nowrap; /*强制不换行*/
+    }
+  }
+.select-label {
+  /* padding: 0 20px; */
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+} 

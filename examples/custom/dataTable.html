@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="js/datatable.js"></script>
+</head>
+<body>
+  <table id="example" class="display" style="width:100%">
+    <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Position</th>
+      <th>Office</th>
+      <th>Start date</th>
+      <th>Salary</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Position</th>
+      <th>Office</th>
+      <th>Start date</th>
+      <th>Salary</th>
+    </tr>
+    </tfoot>
+  </table>
+</body>
+<script>
+  var data = [
+    {
+      "name":       "Tiger Nixon",
+      "position":   "System Architect",
+      "salary":     "$3,120",
+      "start_date": "2011/04/25",
+      "office":     "Edinburgh",
+      "extn":       "5421"
+    },
+    {
+      "name":       "Garrett Winters",
+      "position":   "Director",
+      "salary":     "$5,300",
+      "start_date": "2011/07/25",
+      "office":     "Edinburgh",
+      "extn":       "8422"
+    }
+  ];
+  $(function() {
+    $('#example').DataTable( {
+      "data": data,
+      columns: [
+        { data: 'name' },
+        { data: 'position' },
+        { data: 'salary' },
+        { data: 'office' }
+      ]
+    });
+  })
+</script>
+</html>

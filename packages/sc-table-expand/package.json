@@ -1,0 +1,15 @@
+{
+  "name": "element-sc-table-expand",
+  "version": "0.0.0",
+  "description": "A sc-table-expand component for Vue.js.",
+  "keywords": [
+    "element",
+    "vue",
+    "component"
+  ],
+  "main": "./lib/index.js",
+  "repository": "https://github.com/ElemeFE/element/tree/master/packages/sc-table-expand",
+  "author": "elemefe",
+  "license": "MIT",
+  "dependencies": {}
+}

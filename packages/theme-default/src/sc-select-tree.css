@@ -1,0 +1,32 @@
+/* 清除下拉LI的填充 */
+.sc-select-tree-option.el-select-dropdown__item{
+  padding: 0!important;
+  height: auto;
+}
+.sc-select-tree-option .el-tree {
+  border: none;
+}
+.sc-select-tree-option .el-tree-node__content.node-hover {
+  background: rgb(229, 228, 241);
+}
+
+/* 使选中的tag只显示一行，超出隐藏 */
+.el-sc-select-tree {
+  .el-select__tags{
+    height: 26px;
+    max-width: none!important;
+    overflow-y: hidden;
+  }
+  .clear{
+    color: #999;
+    position: relative;
+    left: -24px;
+    z-index: 99;
+  }
+}
+.el-select__tags.is-disabled{
+  color:#bbb;
+}
+.el-select__tags.is-disabled:hover{
+  cursor: not-allowed;
+}

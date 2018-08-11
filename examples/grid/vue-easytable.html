@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vue-easytable/umd/css/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <v-table :height="400" is-horizontal-resize style="width:100%" :columns="columns" :table-data="tableData" row-hover-color="#eee" row-click-color="#edf7ff"
+        :select-all="selectALL" :select-change="selectChange" :select-group-change="selectGroupChange"></v-table>
+    </div>
+</body>
+<!-- 先引入 Vue -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/vue-easytable/umd/js/index.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            var _this = this;
+            return {
+                tableData: [],
+                columns: [
+                    {
+                        prop: 'transferType',
+                        label: '划款类型',
+                        width: 170,
+                        align: 'center',
+                        fixed: 'left',
+                        tooltip: true,
+                        sortable: true,
+                        render: function (h, params) {
+                            // return _this.getColRender(h, params);
+                        }
+                    },
+                    { prop: 'prdName', label: '基金信息', width: 300, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'payeeAcctName', label: '收款人', width: 220, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'payeeAcctNo', label: '收款人账户', width: 220, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'payeeAcctBankName', label: '收款人开户行', width: 250, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'payeeLargePayNo', label: '收款人支付系统号', width: 220, align: 'left', tooltip: true, sortable: true },
+                    {
+                        prop: 'transferAmount',
+                        label: '划款金额',
+                        width: 150,
+                        align: 'right',
+                        tooltip: true,
+                        sortable: true,
+                        render: function (h, params) {
+                           // return _this.getTransferAmount(h, params)
+                        }
+                    },
+                    { prop: 'currency', label: '币种', width: 150, align: 'center', tooltip: true, sortable: true },
+                    { prop: 'auditProcessStatus', label: '指令状态', width: 200, align: 'center', tooltip: true, sortable: true },
+                    {
+                        prop: 'bankHandleStatus',
+                        label: '银行处理状态',
+                        width: 130,
+                        align: 'center',
+                        tooltip: true,
+                        sortable: true,
+                        render: function (h, params) {
+                           // return _this.getBankHandleRender(h, params)
+                        }
+                    },
+                    { prop: 'settlementStatus', label: '款项交收状态', width: 130, align: 'center', tooltip: true, sortable: true },
+                    { prop: 'sendWay', label: '发送渠道', width: 130, align: 'center', tooltip: true, sortable: true },
+                    {
+                        prop: 'faxSendStatus',
+                        label: '传真/邮箱状态',
+                        width: 130,
+                        align: 'center',
+                        tooltip: true,
+                        sortable: true,
+                        render: function (h, params) {
+                           // return _this.getFaxSendRender(h, params)
+                        }
+                    },
+                    { prop: 'draweeAcctName', label: '付款人', width: 180, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'draweeAcctNo', label: '付款人账户', width: 180, align: 'left', tooltip: true, sortable: true },
+
+                    { prop: 'draweeAcctBankName', label: '付款人开户行', width: 220, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'draweeLargePayNo', label: '付款人大额支付号', width: 180, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'instructionNo', label: '指令编号', width: 180, align: 'center', tooltip: true, sortable: true },
+                    {
+                        prop: 'transferDate',
+                        label: '划款日期',
+                        width: 180,
+                        align: 'center',
+                        tooltip: true,
+                        sortable: true,
+                        formatter: _this.formatter
+                    },
+                    { prop: 'productionTime', label: '生成日期', width: 180, align: 'center', tooltip: true, sortable: true },
+                    { prop: 'sendTime', label: '发送时间', width: 180, align: 'center', tooltip: true, sortable: true },
+                    {
+                        prop: 'bizDateB',
+                        label: '开始日期',
+                        width: 180,
+                        align: 'center',
+                        tooltip: true,
+                        sortable: true,
+                        formatter: _this.formatter
+                    },
+                    {
+                        prop: 'bizDateE',
+                        label: '截止日期',
+                        width: 180,
+                        align: 'center',
+                        tooltip: true,
+                        sortable: true,
+                        formatter: _this.formatter
+                    },
+                    { prop: 'orgName', label: '机构名称', width: 180, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'seatNo', label: '席位信息', width: 180, align: 'left', tooltip: true, sortable: true },
+
+                    { prop: 'secCode', label: '证券代码', width: 180, align: 'center', tooltip: true, sortable: true },
+                    { prop: 'secName', label: '证券名称', width: 180, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'contactName', label: '联系人', width: 180, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'contactMobilephone', label: '联系电话', width: 180, align: 'left', tooltip: true, sortable: true },
+                    {
+                        prop: 'isManual',
+                        label: '指令来源',
+                        width: 180,
+                        align: 'left',
+                        tooltip: true,
+                        sortable: true,
+                        render: function (h, params) {
+                            return h('span', {
+                                domProps: {
+                                    innerHTML: params.row.isManual == 1 ? '手动' : '自动'
+                                }
+                            })
+                        }
+                    },
+                    { prop: 'manager', label: '经办人', width: 180, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'reviewer', label: '复核人', width: 180, align: 'left', tooltip: true, sortable: true },
+                    { prop: 'approver', label: '审批人', width: 180, align: 'left', tooltip: true, sortable: true },
+                    {
+                        prop: 'acctCkResult',
+                        label: '账户核对',
+                        width: 180,
+                        align: 'left',
+                        tooltip: true,
+                        sortable: true,
+                        render: function (h, params) {
+                           // return _this.getAcctCkResultRender(h, params)
+                        }
+                    }
+                ]
+            }
+        },
+        created: function() {
+            axios('../../JsonData/zlgl.json').then(function(data) {
+                this.tableData = data.data.rows;
+            }.bind(this));
+            this.columns.forEach(function(item) {
+                this.$set(item, 'field', item.prop);
+                this.$set(item, 'title', item.label)
+            });
+            this.columns.unshift({width: 60, titleAlign: 'center',columnAlign:'center',type: 'selection'})
+        },
+        methods: {
+            selectALL: function(selection) {
+
+                console.log('select-aLL', selection);
+            },
+
+            selectChange: function(selection, rowData) {
+                console.log('select-change', selection, rowData);
+            },
+
+            selectGroupChange: function(selection) {
+                console.log('select-group-change', selection);
+            }
+        }
+    })
+</script>
+
+</html>

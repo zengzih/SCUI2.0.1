@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	function TransFormData(self) {
+	  var initObj = {};
+	  var _this = this;
+	  this.init = function() {
+	    initObj = {
+	      objId: self.objId,
+	      actionType: self.actionType,
+	      subObjId: self.subObjId,
+	      data: self.formData,
+	      /*course: {
+	        list4create: [],
+	        list4update: [],
+	        list4delete: []
+	      }*/
+	    };
+	    if (initObj.subObjId) {
+	      initObj[initObj.subObjId] = {
+	      	list4create: [],
+	        list4update: [],
+	        list4delete: []
+	      };    
+	    }
+	    return initObj;
+	  };
+
+	  this.mutations = {
+	    add: function(params) {
+	    	var editParams = editParams || {};
+	    	if (params.subObjId) {
+	    		delete params[list4update];
+	    		delete params[list4delete]; 
+	    	}
+	    	if (editParams.type) {
+	    		params[params[params.subObjId]]['list4' + editParams.type] = editParams.table;
+	    	}
+	    	return { entityStr: JSON.stringify(params) };
+	    },
+	    edit: function(params, editParams) {
+	    	var editParams = editParams || {};
+	    	if (editParams.type) {
+	    		params[params[params.subObjId]]['list4' + editParams.type] = editParams.table;
+	    	}
+	    	console.log(params);
+	    	return { entityStr: JSON.stringify(params) };
+	    },
+	    del: function(params) {
+	    	if (params.subObjId) {
+	    		delete params[params.subObjId];	
+	    	}
+			return { entityStr: JSON.stringify(params) };
+	    }
+	  }; 
+	  this.commit = function(name, params) {
+	  	var mutations = this.mutations;
+	  	if (mutations[name]) {
+	  		var init = this.init();
+	  		var actionType = {
+	  			add: 'insert',
+	  			edit: 'update',
+	  			del: 'delete'
+	  		};
+	  		init.actionType = actionType[name];
+	  		mutations[name].call(this, Object.assign(params, init));
+	  	}
+	  };
+	}
+	var transform = new  TransFormData(this);
+	transform.commit('edit', {type: 'edit'}, );
+</script>
+</html>

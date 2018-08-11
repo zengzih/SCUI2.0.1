@@ -1,0 +1,15 @@
+{
+  "name": "element-sc-select-multiple",
+  "version": "0.0.0",
+  "description": "A sc-select-multiple component for Vue.js.",
+  "keywords": [
+    "element",
+    "vue",
+    "component"
+  ],
+  "main": "./lib/index.js",
+  "repository": "https://github.com/ElemeFE/element/tree/master/packages/sc-select-multiple",
+  "author": "elemefe",
+  "license": "MIT",
+  "dependencies": {}
+}

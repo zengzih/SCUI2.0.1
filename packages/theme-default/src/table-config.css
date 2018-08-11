@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@import "./common/var.css";
+
+@component-namespace config {
+    @b table {
+        .footer {
+            overflow: hidden;
+            .content {
+                display: inline-block;
+                float: right;
+                margin-right: 5px;
+                margin-top: 5px;
+            }
+        }
+    }
+}

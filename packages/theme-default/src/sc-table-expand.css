@@ -1,0 +1,137 @@
+/*.el-sc-table-expand .el-table__expanded-cell{
+  padding: 0;
+}
+.el-sc-table-expand .el-table__expanded-cell thead .el-table-column--selection .cell{
+  display: none;
+}
+
+.el-sc-table-expand table .el-table{
+  border: none;
+} */
+/*
+.el-sc-table-expand {
+  border-bottom: 1px solid 
+  thead{
+    background-color: #dadde5;
+    tr.draggable{
+      cursor: col-resize;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+  }
+  tbody{
+    display: block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    tr:nth-child(even){
+      background-color: #f3f3f3;
+    }
+    tr:hover {
+      background-color: #F2ECC1 !important;
+    }
+  }
+  tr{
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    td:last-child {
+      border-right: 1px solid #cbcbcb;
+    }
+    th,td{
+      border-color: #b1bddd;
+      padding: 4px 8px;
+      font-size: 12px;
+    }
+
+    th,td,.render{
+      box-sizing: border-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    th:nth-child(1),th:nth-child(2),td:nth-child(1),td:nth-child(2){
+      text-overflow: clip;
+    }
+
+    [tooltip]:before {
+      position : absolute;
+      content : attr(tooltip);
+      opacity : 0;
+      background-color: #333;
+      padding: 8px;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 12px;
+    }
+    [tooltip]:hover:before {
+      opacity : 1;
+    }
+    [tooltip]:not([tooltip-persistent]):before {
+      pointer-events: none;
+    }
+  }
+  tr.highlight{
+    background-color: #F0B84C !important;
+  }
+}
+*/
+@charset "UTF-8";
+@import "./common/var.css";
+
+@component-namespace el {
+  @b table {
+    @e column-del-trigger {
+      float: right;
+      margin-right: 15px;
+      cursor: pointer;
+      .is-del-able {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        transition: 0s;
+        font-size: 14px;
+        background: #97a8be;
+        vertical-align: middle;
+        border-radius: 50%;
+        position: relative;
+        transform: rotate(45deg);
+        &:hover {
+          i {
+            background: red;
+          }
+        }
+        i {
+          transition: background 0.2s;
+          background: #fff;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          &:first-child {
+             width: 80%;
+             height: 2px;
+          }
+          &:last-child {
+             height: 80%;
+             width: 2px;
+          }
+        }
+      }
+    }
+  }
+}
+.data-empty {
+  display:inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 50%);
+}
+td .cell {
+  white-space: nowrap;
+}
